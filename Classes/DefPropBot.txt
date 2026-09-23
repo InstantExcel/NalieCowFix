@@ -1,0 +1,34 @@
+defaultproperties
+{
+	DefaultFace="TCowMeshSkins.WarCowFace"
+	TeamSkin="T_cow_"
+	DefaultCustomPackage="TCowMeshSkins."
+	CarcassType=Class'tcowcarcass'
+	drown=Sound'UnrealShare.Male.MDrown1'
+	breathagain=Sound'UnrealShare.Nali.cough1n'
+	Footstep1=Sound'UnrealShare.Cow.walkC'
+	Footstep2=Sound'UnrealShare.Cow.walkC'
+	Footstep3=Sound'UnrealShare.Cow.walkC'
+	HitSound3=Sound'UnrealShare.Cow.injurC1c'
+	HitSound4=Sound'UnrealShare.Cow.cMoo2c'
+	Deaths(0)=Sound'UnrealShare.Cow.DeathC1c'
+	Deaths(1)=Sound'UnrealShare.Cow.DeathC1c'
+	Deaths(2)=Sound'UnrealShare.Cow.DeathC1c'
+	Deaths(3)=Sound'UnrealShare.Cow.DeathC1c'
+	Deaths(4)=Sound'UnrealShare.Cow.cMoo2c'
+	Deaths(5)=Sound'UnrealShare.Cow.cMoo2c'
+	GaspSound=Sound'UnrealShare.Nali.breath1n'
+	UWHit1=Sound'UnrealShare.Male.MUWHit1'
+	UWHit2=Sound'UnrealShare.Male.MUWHit2'
+	LandGrunt=Sound'UnrealShare.Male.lland01'
+	JumpSound=Sound'UnrealShare.Male.MJump1'
+	DefaultSkinName="TCowMeshSkins.WarCow"
+	bIsMultiSkinned=False
+	SelectionMesh="EpicCustomModels.TCowMesh"
+	HitSound1=Sound'UnrealShare.Cow.injurC1c'
+	HitSound2=Sound'UnrealShare.Cow.injurC2c'
+	MenuName="Nali Cow Fixed"
+	VoiceType="MultiMesh.CowVoice"
+	Mesh=LodMesh'CowFixJRM26.TCowNewJRM'
+	MultiSkins(2)=Texture'CowFixJRM26Skins.Atomic2'
+}
