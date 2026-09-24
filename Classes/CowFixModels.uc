@@ -166,7 +166,7 @@ class CowFixModels expands Decoration;
 #exec MESH NOTIFY MESH=TCowNewJRM SEQ=Dead2 TIME=0.57 FUNCTION=LandThump
 #exec MESH NOTIFY MESH=TCowNewJRM SEQ=Dead3 TIME=0.71 FUNCTION=LandThump
 
-
+/*
 #exec TEXTURE IMPORT NAME=Texture FILE=Textures\Texture.PCX GROUP=Skins FLAGS=2
 #exec MESHMAP SETTEXTURE MESHMAP=TCowNewJRM NUM=0 TEXTURE=Texture
 
@@ -178,6 +178,11 @@ class CowFixModels expands Decoration;
 
 #exec TEXTURE IMPORT NAME=COW_FACE FILE=Textures\COW_FACE.PCX GROUP=Skins FLAGS=2
 #exec MESHMAP SETTEXTURE MESHMAP=TCowNewJRM NUM=3 TEXTURE=COW_FACE
+*/
+
+// :: Doll Texture for HUD ::: 
+#exec TEXTURE IMPORT NAME=CowStatusDoll FILE=Textures\Cow_Status_Doll.bmp GROUP=HUD FLAGS=2
+#exec TEXTURE IMPORT NAME=CowBelt FILE=Textures\Cow_Belt.bmp GROUP=HUD FLAGS=2
 
 defaultproperties
 {

@@ -3,53 +3,14 @@
 //=============================================================================
 class JRMCowPlayer extends CustomPlayer;
 
+
+var Texture DefaultTalkTexture;
 simulated function SetMyMesh()
 {
 	Super.SetMyMesh();
 	bIsMultiSkinned = true;
 }
 
-static function SetMultiSkin(Actor SkinActor, string SkinName, string FaceName, byte TeamNum)
-{
-	local string SkinItem, SkinPackage;
-
-	if ( SkinName == "" )
-		SkinName = default.DefaultSkinName;
-	else
-	{
-		SkinItem = SkinActor.GetItemName(SkinName);
-		SkinPackage = Left(SkinName, Len(SkinName) - Len(SkinItem));
-	
-		if( SkinPackage == "" )
-		{
-			SkinPackage = default.DefaultCustomPackage;
-			SkinName = SkinPackage $ SkinName;
-		}
-	}
-	
-	// Slot 1: Body (Not team-based)
-	if( !SetSkinElement(SkinActor, 1, SkinName$"1", default.DefaultSkinName$"1") )
-		SkinName = default.DefaultSkinName;
-
-	// Slot 2: Backpack (Team-based)
-	if( TeamNum < 4 )
-		SetSkinElement(SkinActor, 2, SkinName$"2T_"$String(TeamNum), SkinName$"2");
-	else
-		SetSkinElement(SkinActor, 2, SkinName$"2", SkinName$"2");
-
-	// Slot 3: Face (Customizable, non-team)
-	SetSkinElement(SkinActor, 3, SkinName$"3"$FaceName, default.DefaultSkinName$"3"$default.DefaultFace);
-
-	// Set the TalkTexture (UI Portrait)
-	if( Pawn(SkinActor) != None )
-	{
-		if ( FaceName != "" )
-			Pawn(SkinActor).PlayerReplicationInfo.TalkTexture = Texture(DynamicLoadObject(SkinName$"5"$FaceName, class'Texture'));
-		
-		if ( Pawn(SkinActor).PlayerReplicationInfo.TalkTexture == None )
-			Pawn(SkinActor).PlayerReplicationInfo.TalkTexture = Texture(DynamicLoadObject(default.DefaultFace, class'Texture'));
-	}
-}
 
 // special animation functions
 function PlayDying(name DamageType, vector HitLoc)
@@ -117,9 +78,9 @@ function PlayCowDecap()
 
 defaultproperties
 {
-	DefaultFace="CowFixJRM26Skins.Atomic3"
-	TeamSkin="Atomic2T_"
-	DefaultCustomPackage="CowFixJRM26Skins."
+
+
+    SkinInfo=Class'CowFixJRM26.CowFixJRMSkinInfo'
 	CarcassType=Class'tcowcarcass'
 	drown=Sound'UnrealShare.Male.MDrown1'
 	breathagain=Sound'UnrealShare.Nali.cough1n'
@@ -147,7 +108,7 @@ defaultproperties
 	VoiceType="MultiMesh.CowVoice"
 	Mesh=LodMesh'CowFixJRM26.TCowNewJRM'
 	SelectionMesh="CowFixJRM26.TCowNewJRM"
-	MultiSkins(2)=Texture'CowFixJRM26Skins.Atomic1'
-	MultiSkins(3)=Texture'CowFixJRM26Skins.Atomic2'
-	MultiSkins(4)=Texture'CowFixJRM26Skins.Atomic3'
+
+	StatusDoll=Texture'CowFixJRM26.HUD.CowStatusDoll'
+    StatusBelt=Texture'CowFixJRM26.HUD.CowBelt'
 }
