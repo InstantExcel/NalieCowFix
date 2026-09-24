@@ -116,7 +116,7 @@ function PlayCowDecap()
 
 defaultproperties
 {
-	DefaultFace="CowFixJRM26Skins.Atomic1"
+	DefaultFace="CowFixJRM26Skins.Atomic3"
 	TeamSkin="Atomic2T_"
 	DefaultCustomPackage="CowFixJRM26Skins."
 	CarcassType=Class'tcowcarcass'
@@ -138,7 +138,7 @@ defaultproperties
 	UWHit2=Sound'UnrealShare.Male.MUWHit2'
 	LandGrunt=Sound'UnrealShare.Male.lland01'
 	JumpSound=Sound'UnrealShare.Male.MJump1'
-	DefaultSkinName="CowFixJRM26Skins.ATOMIC"
+	DefaultSkinName="CowFixJRM26Skins.Atomic"
 	bIsMultiSkinned=True
 	HitSound1=Sound'UnrealShare.Cow.injurC1c'
 	HitSound2=Sound'UnrealShare.Cow.injurC2c'
@@ -146,5 +146,7 @@ defaultproperties
 	VoiceType="MultiMesh.CowVoice"
 	Mesh=LodMesh'CowFixJRM26.TCowNewJRM'
 	SelectionMesh="CowFixJRM26.TCowNewJRM"
+	MultiSkins(1)=Texture'CowFixJRM26Skins.Atomic1'
 	MultiSkins(2)=Texture'CowFixJRM26Skins.Atomic2'
+	MultiSkins(3)=Texture'CowFixJRM26Skins.Atomic3Default'
 }

@@ -13,14 +13,6 @@ static function SetMultiSkin(Actor SkinActor, string SkinName, string FaceName, 
 {
 	local string SkinItem, SkinPackage;
 
-	if ( SkinActor.Mesh == Default.FallBackMesh )
-	{
-		Super.SetMultiSkin(SkinActor, "CommandoSkins.cmdo", "Blake", TeamNum);
-		return;
-	}
-
-	// two skins
-
 	if ( SkinName == "" )
 		SkinName = default.DefaultSkinName;
 	else
@@ -30,29 +22,31 @@ static function SetMultiSkin(Actor SkinActor, string SkinName, string FaceName, 
 	
 		if( SkinPackage == "" )
 		{
-			SkinPackage=default.DefaultCustomPackage;
-			SkinName=SkinPackage$SkinName;
+			SkinPackage = default.DefaultCustomPackage;
+			SkinName = SkinPackage $ SkinName;
 		}
 	}
-
+	
+	// Slot 1: Body (Not team-based)
 	if( !SetSkinElement(SkinActor, 1, SkinName$"1", default.DefaultSkinName$"1") )
+		SkinName = default.DefaultSkinName;
 
-	// Set the team elements
+	// Slot 2: Backpack (Team-based)
 	if( TeamNum < 4 )
-		SetSkinElement(SkinActor, 2, default.DefaultCustomPackage$default.TeamSkin$String(TeamNum), SkinName);
+		SetSkinElement(SkinActor, 2, SkinName$"2T_"$String(TeamNum), SkinName$"2");
 	else
-		SkinActor.MultiSkins[2] = Default.MultiSkins[2];
+		SetSkinElement(SkinActor, 2, SkinName$"2", SkinName$"2");
 
-	// Set the talktexture
-	if( Pawn(SkinActor) != None && Pawn(SkinActor).PlayerReplicationInfo != None )
+	// Slot 3: Face (Customizable, non-team)
+	SetSkinElement(SkinActor, 3, SkinName$"3"$FaceName, default.DefaultSkinName$"3"$default.DefaultFace);
+
+	// Set the TalkTexture (UI Portrait)
+	if( Pawn(SkinActor) != None )
 	{
-		if ( (SkinName != Default.DefaultSkinName) && (TeamNum == 255) )
-		{
-			Pawn(SkinActor).PlayerReplicationInfo.TalkTexture = Texture(DynamicLoadObject(SkinName$"Face", class'Texture'));
-			if ( Pawn(SkinActor).PlayerReplicationInfo.TalkTexture == None )
-				Pawn(SkinActor).PlayerReplicationInfo.TalkTexture = Texture(DynamicLoadObject(default.DefaultFace, class'Texture'));
-		}
-		else
+		if ( FaceName != "" )
+			Pawn(SkinActor).PlayerReplicationInfo.TalkTexture = Texture(DynamicLoadObject(SkinName$"5"$FaceName, class'Texture'));
+		
+		if ( Pawn(SkinActor).PlayerReplicationInfo.TalkTexture == None )
 			Pawn(SkinActor).PlayerReplicationInfo.TalkTexture = Texture(DynamicLoadObject(default.DefaultFace, class'Texture'));
 	}
 }
@@ -123,7 +117,7 @@ function PlayCowDecap()
 
 defaultproperties
 {
-	DefaultFace="CowFixJRM26Skins.Atomic1"
+	DefaultFace="CowFixJRM26Skins.Atomic3"
 	TeamSkin="Atomic2T_"
 	DefaultCustomPackage="CowFixJRM26Skins."
 	CarcassType=Class'tcowcarcass'
