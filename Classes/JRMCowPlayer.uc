@@ -11,6 +11,7 @@ simulated function SetMyMesh()
 	bIsMultiSkinned = true;
 }
 
+
 static function SetMultiSkin(Actor SkinActor, string SkinName, string FaceName, byte TeamNum)
 {
 	local string SkinItem, SkinPackage;
@@ -30,17 +31,17 @@ static function SetMultiSkin(Actor SkinActor, string SkinName, string FaceName, 
 	}
 
 	// Slot 1: Body (Not team-based)
-	if( !SetSkinElement(SkinActor, 1, SkinName$"1", default.DefaultSkinName$"1") )
+	if( !SetSkinElement(SkinActor, 1, SkinName$"0", default.DefaultSkinName$"1") )
 		SkinName = default.DefaultSkinName;
 
 	// Slot 2: Backpack (Team-based)
 	if( TeamNum < 4 )
-		SetSkinElement(SkinActor, 2, SkinName$"2T_"$String(TeamNum), SkinName$"2");
+		SetSkinElement(SkinActor, 2, SkinName$"1T_"$String(TeamNum), SkinName$"1");
 	else
-		SetSkinElement(SkinActor, 2, SkinName$"2", SkinName$"2");
+		SetSkinElement(SkinActor, 2, SkinName$"1", SkinName$"1");
 
 	// Slot 3: Face (Customizable, non-team)
-	SetSkinElement(SkinActor, 3, SkinName$"3"$FaceName, default.DefaultSkinName$"3"$default.DefaultFace);
+	SetSkinElement(SkinActor, 3, SkinName$"2"$FaceName, default.DefaultSkinName$"2"$default.DefaultFace);
 
 	// Set the TalkTexture (UI Portrait)
 	if( Pawn(SkinActor) != None )
