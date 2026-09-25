@@ -11,6 +11,47 @@ simulated function SetMyMesh()
 	bIsMultiSkinned = true;
 }
 
+static function SetMultiSkin(Actor SkinActor, string SkinName, string FaceName, byte TeamNum)
+{
+	local string SkinItem, SkinPackage;
+
+	if ( SkinName == "" )
+		SkinName = default.DefaultSkinName;
+	else
+	{
+		SkinItem = SkinActor.GetItemName(SkinName);
+		SkinPackage = Left(SkinName, Len(SkinName) - Len(SkinItem));
+
+		if( SkinPackage == "" )
+		{
+			SkinPackage = default.DefaultCustomPackage;
+			SkinName = SkinPackage $ SkinName;
+		}
+	}
+
+	// Slot 1: Body (Not team-based)
+	if( !SetSkinElement(SkinActor, 1, SkinName$"1", default.DefaultSkinName$"1") )
+		SkinName = default.DefaultSkinName;
+
+	// Slot 2: Backpack (Team-based)
+	if( TeamNum < 4 )
+		SetSkinElement(SkinActor, 2, SkinName$"2T_"$String(TeamNum), SkinName$"2");
+	else
+		SetSkinElement(SkinActor, 2, SkinName$"2", SkinName$"2");
+
+	// Slot 3: Face (Customizable, non-team)
+	SetSkinElement(SkinActor, 3, SkinName$"3"$FaceName, default.DefaultSkinName$"3"$default.DefaultFace);
+
+	// Set the TalkTexture (UI Portrait)
+	if( Pawn(SkinActor) != None )
+	{
+		if ( FaceName != "" )
+			Pawn(SkinActor).PlayerReplicationInfo.TalkTexture = Texture(DynamicLoadObject(SkinName$"5"$FaceName, class'Texture'));
+
+		if ( Pawn(SkinActor).PlayerReplicationInfo.TalkTexture == None )
+			Pawn(SkinActor).PlayerReplicationInfo.TalkTexture = Texture(DynamicLoadObject(default.DefaultFace, class'Texture'));
+	}
+}
 
 
 // special animation functions
@@ -117,7 +158,7 @@ defaultproperties
 	  DefaultCustomPackage="CowFixJRM26Skins."
       DefaultFace="Default"
       TeamSkin="ATMC1T_"
-      HighestSkinNumber=1
+      HighestSkinNumber=2
       ChangesWithTeam(1)=1
       ChangesWithFace(0)=0
 	  ChangesWithFace(1)=0
@@ -125,7 +166,7 @@ defaultproperties
 	  ChangesWithFace(3)=0
       DefaultFace="Default"
       bIsMultiSkinned=True
-	  //MultiSkins(0)=Texture'CowFixJRM26Skins.ATMC0'
-	  //MultiSkins(1)=Texture'CowFixJRM26Skins.ATMC1'
-	  //MultiSkins(2)=Texture'CowFixJRM26Skins.ATMC2Default'
+	  MultiSkins(0)=Texture'CowFixJRM26Skins.ATMC0'
+	  MultiSkins(1)=Texture'CowFixJRM26Skins.ATMC1'
+	  MultiSkins(2)=Texture'CowFixJRM26Skins.ATMC2Default'
 }
