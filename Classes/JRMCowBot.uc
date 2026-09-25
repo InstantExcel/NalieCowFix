@@ -9,7 +9,6 @@ simulated function SetMyMesh()
 	bIsMultiSkinned = true;
 }
 
-
 // special animation functions
 function PlayDying(name DamageType, vector HitLoc)
 {
@@ -96,13 +95,29 @@ defaultproperties
 	UWHit2=Sound'UnrealShare.Male.MUWHit2'
 	LandGrunt=Sound'UnrealShare.Male.lland01'
 	JumpSound=Sound'UnrealShare.Male.MJump1'
-	DefaultSkinName="CowFixJRM26Skins.Atomic"
-	bIsMultiSkinned=True
 	HitSound1=Sound'UnrealShare.Cow.injurC1c'
 	HitSound2=Sound'UnrealShare.Cow.injurC2c'
 	MenuName="Nali Cow Fixed"
 	VoiceType="MultiMesh.CowVoice"
 	Mesh=LodMesh'CowFixJRM26.TCowNewJRM'
 	SelectionMesh="CowFixJRM26.TCowNewJRM"
+
+	  DefaultSkinName="CowFixJRM26Skins.ATMC"
+      DefaultPackage="CowFixJRM26Skins."
+	  DefaultCustomPackage="CowFixJRM26Skins."
+      DefaultFace="Default"
+      TeamSkin="ATMC1T_"
+      HighestSkinNumber=1
+      ChangesWithTeam(1)=1
+      ChangesWithFace(0)=0
+	  ChangesWithFace(1)=0
+	  ChangesWithFace(2)=0
+	  ChangesWithFace(3)=0
+      DefaultFace="Default"
+      bIsMultiSkinned=True
+	  
+	  //MultiSkins(1)=Texture'CowFixJRM26Skins.ATMC0'
+	  //MultiSkins(2)=Texture'CowFixJRM26Skins.ATMC1'
+	  //MultiSkins(3)=Texture'CowFixJRM26Skins.ATMC2Default'
 
 }
